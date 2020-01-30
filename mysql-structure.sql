@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS `emails` (
   `body_text` text NOT NULL,
   `body_html` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
+) ENGINE=InnoDB;
 
 --
 -- Table structure for table `files`
@@ -23,4 +23,4 @@ CREATE TABLE IF NOT EXISTS `files` (
   `email_id` int(11) NOT NULL,
   `filename` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=120 ;
+) ENGINE=InnoDB;
