@@ -13,7 +13,7 @@ Navigate to the folder on your server where you want to run the script.
 * config.php
 * mimeDecode.php
 
-2. Create a folder called "files" and make sure it's writable by the web server.
+2. Create a folder called "results" and make sure it's writable by the web server.
 
 3. In your MySQL database, create the tables "emails" and "files" by importing the file:
 * mysql-structure.sql
@@ -34,7 +34,7 @@ http://php.net/manual/en/function.imap-open.php
 The file to either pipe to or run as a cron job is application.php
 
 # Referencing attachments/images
-When an email is processed, a unique ID will be generated for the MySQL record and if any attachments are present, a folder for that ID will be created in your "files" folder. Attachments will be saved there.
+When an email is processed, a unique ID will be generated for the MySQL record and if any attachments are present, a folder for that ID will be created in your "results" folder. Attachments will be saved there.
 
 Reference to images is only saved in the "text-html" part of the message, and not the "text-plain."
 
@@ -44,8 +44,8 @@ Images are referenced like:
 
 When including the message in your own application you'll simply replace "[filePath]" with the relevant folder path, for example, if the path to your files is:
 
-[example.com]/application/files/dkvmbY14NZr4l4eb79Gs1513724817/mypicture.png
+[example.com]/application/results/dkvmbY14NZr4l4eb79Gs1513724817/mypicture.png
 
 then your code will be
 
-$str = str_replace("[filePath]","/application/files",$str);
+$str = str_replace("[filePath]","/application/results",$str);
