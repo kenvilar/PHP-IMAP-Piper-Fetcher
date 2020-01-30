@@ -8,10 +8,10 @@ require_once("mimeDecode.php");
 set_time_limit(600);
 ini_set('max_execution_time',600);
 
-$mysql = mysql_connect($mysql_host, $mysql_user, $mysql_pass);
-$db_selected = mysql_select_db($mysql_db, $mysql);
+$mysql = mysqli_connect($mysql_host, $mysql_user, $mysql_pass);
+$db_selected = mysqli_select_db($mysql, $mysql_db);
 
-mysql_set_charset('utf8',$mysql);
+mysqli_set_charset($mysql, 'utf8');
 
 /* Pipe */
 if ($grab_type == "pipe") {
@@ -71,4 +71,4 @@ function generateId($n) {
   return $id;
 }
 
-mysql_close($mysql);
+mysqli_close($mysql);

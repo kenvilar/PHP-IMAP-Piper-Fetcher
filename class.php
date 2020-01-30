@@ -131,7 +131,7 @@ class EmailObject {
     
     if (isset($this->bodyText)) {
       $body_text = $this->bodyText;
-      $body_text = mysql_real_escape_string(mb_convert_encoding(trim($body_text),'UTF-8','UTF-8'), $mysql);
+        $body_text = mysqli_real_escape_string($mysql, mb_convert_encoding(trim($body_text),'UTF-8','UTF-8'));
     } else {
       $body_text = "";
     }
@@ -158,38 +158,38 @@ class EmailObject {
       $body_html = preg_replace("/ data-id=\"(.*?)\"/i","",$body_html);
       $body_html = preg_replace("/ apple-inline=\"yes\"/i","",$body_html);
       
-      $body_html = mysql_real_escape_string(mb_convert_encoding(trim($body_html),'UTF-8','UTF-8'), $mysql);
+      $body_html = mysqli_real_escape_string($mysql, mb_convert_encoding(trim($body_html),'UTF-8','UTF-8'));
     } else {
       $body_html = "";
     }
         
     // Prepare data for MySql
     if (isset($this->name))
-      $name = mysql_real_escape_string(mb_convert_encoding($this->name,'UTF-8','UTF-8'), $mysql);
+      $name = mysqli_real_escape_string($mysql, mb_convert_encoding($this->name,'UTF-8','UTF-8'));
     else
       $name = "";
     if (isset($this->email))
-      $email = mysql_real_escape_string(mb_convert_encoding($this->email,'UTF-8','UTF-8'), $mysql);
+      $email = mysqli_real_escape_string($mysql, mb_convert_encoding($this->email,'UTF-8','UTF-8'));
     else
       $email = "";
     if (isset($this->subject))
-      $subject = mysql_real_escape_string(mb_convert_encoding($this->subject,'UTF-8','UTF-8'), $mysql);
+      $subject = mysqli_real_escape_string($mysql, mb_convert_encoding($this->subject,'UTF-8','UTF-8'));
     else
       $subject = "";
     
     // Insert message to MySQL
-    mysql_query("INSERT INTO emails (uniqid,time,name,email,subject,body_text,body_html) VALUES ('".$uniqid."',now(),'".$name."','".$email."','".$subject."','".$body_text."','".$body_html."')");
+    mysqli_query($mysql, "INSERT INTO emails (uniqid,time,name,email,subject,body_text,body_html) VALUES ('".$uniqid."',now(),'".$name."','".$email."','".$subject."','".$body_text."','".$body_html."')");
 
     // Get the AI ID from MySQL
-    $result = mysql_query ("SELECT id FROM emails WHERE uniqid='".$uniqid."'");
-    $row = mysql_fetch_array($result);
-    $email_id = mysql_real_escape_string($row["id"], $mysql);
+    $result = mysqli_query ($mysql, "SELECT id FROM emails WHERE uniqid='".$uniqid."'");
+    $row = mysqli_fetch_array($result);
+    $email_id = mysqli_real_escape_string($mysql, $row["id"]);
     
     // Insert all the attached file names to MySQL
     if (sizeof($this->saved_files) > 0) {
       foreach($this->saved_files as $filename){
-        $filename = mysql_real_escape_string(mb_convert_encoding($filename,'UTF-8','UTF-8'), $mysql);
-        mysql_query("INSERT INTO files (email_id,filename) VALUES ('".$email_id."','".$filename."')");
+        $filename = mysqli_real_escape_string($mysql, mb_convert_encoding($filename,'UTF-8','UTF-8'));
+          mysqli_query($mysql, "INSERT INTO files (email_id,filename) VALUES ('".$email_id."','".$filename."')");
       }
     }
   }
