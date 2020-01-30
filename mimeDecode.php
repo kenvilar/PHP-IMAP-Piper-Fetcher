@@ -1071,7 +1071,7 @@ class Mail_mimeDecode extends PEAR
             $params = '';
         }
 
-        $return = str_repeat($htab, $indent) . '<header>' . $crlf .
+        $return = str_repeat($htab, $indent) . '<header><meta http-equiv="Content-Type" content="text/html; charset=utf-8">' . $crlf .
                   str_repeat($htab, $indent) . $htab . '<headername>' . htmlspecialchars($new_hdr_name) . '</headername>' . $crlf .
                   str_repeat($htab, $indent) . $htab . '<headervalue>' . htmlspecialchars($new_hdr_value['value']) . '</headervalue>' . $crlf .
                   $params .

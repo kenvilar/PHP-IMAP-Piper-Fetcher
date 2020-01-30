@@ -131,7 +131,7 @@ class EmailObject {
     
     if (isset($this->bodyText)) {
       $body_text = $this->bodyText;
-        $body_text = mysqli_real_escape_string($mysql, mb_convert_encoding(trim($body_text),'UTF-8','UTF-8'));
+      $body_text = mysqli_real_escape_string($mysql, mb_convert_encoding(trim($body_text),'UTF-8','UTF-8'));
     } else {
       $body_text = "";
     }
@@ -189,7 +189,7 @@ class EmailObject {
     if (sizeof($this->saved_files) > 0) {
       foreach($this->saved_files as $filename){
         $filename = mysqli_real_escape_string($mysql, mb_convert_encoding($filename,'UTF-8','UTF-8'));
-          mysqli_query($mysql, "INSERT INTO files (email_id,filename) VALUES ('".$email_id."','".$filename."')");
+        mysqli_query($mysql, "INSERT INTO files (email_id,filename) VALUES ('".$email_id."','".$filename."')");
       }
     }
   }
