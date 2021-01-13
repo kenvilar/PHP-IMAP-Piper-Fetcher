@@ -110,9 +110,11 @@ class EmailObject
                 $this->bodyHtml .= $body_part->body;
             }
         }
-        echo "<P>" . $body_part->ctype_primary;
+
+        // Intentionally commented to avoid email bouncing back error
+        /*echo "<P>" . $body_part->ctype_primary;
         if ($body_part->ctype_primary == "body")
-            echo $body_part->body;
+            echo $body_part->body;*/
     }
 
     // Save file

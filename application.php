@@ -1,6 +1,5 @@
 #!/usr/bin/php -q
 <?php
-
 require_once("config.php");
 require_once("class.php");
 require_once("mimeDecode.php");
@@ -79,3 +78,4 @@ function generateId($n)
 }
 
 mysqli_close($mysql);
+?>
