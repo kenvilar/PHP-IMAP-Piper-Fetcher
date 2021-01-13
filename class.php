@@ -23,7 +23,7 @@ class EmailObject
         $decoder = new Mail_mimeDecode($this->source);
 
         $this->decoded = $decoder->decode(
-            Array(
+            array(
                 "decode_headers" => TRUE,
                 "include_bodies" => TRUE,
                 "decode_bodies" => TRUE,

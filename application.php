@@ -39,7 +39,7 @@ if ($grab_type == "fetch") {
             rsort($emails);
 
             if ($emails) {
-                foreach ($emails AS $n) {
+                foreach ($emails as $n) {
                     $source = imap_fetchbody($inbox, $n, "");
                     $uniqid = generateId(20) . date("U");
                     $emailMessage = new EmailObject($mysql, $uniqid, $source, $file_store);
